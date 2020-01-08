@@ -222,7 +222,7 @@ local function youWinTransition( )
     audio.stop(level2SoundChannel)   
     pauseButton.isVisible = false
     timer.cancel(countDownTimer)
-    composer.gotoScene( "YouWin", {effect = "slideRight", time = 1000})
+    composer.gotoScene( "YouWin4", {effect = "slideRight", time = 1000})
 end 
 local function youLoseTransition(  )
     audio.stop(level2SoundChannel)
@@ -249,7 +249,7 @@ local function youLoseTransition(  )
     SaltTextField.isVisible = false
     SugarTextField.isVisible = false
     pauseButton.isVisible = false
-    composer.gotoScene("YouLose", {effect = "slideRight", time = 1000})
+    composer.gotoScene("YouLose4", {effect = "slideRight", time = 1000})
 end
 local function pause(  )
     HideNumTextfields()
