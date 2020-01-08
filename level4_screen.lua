@@ -50,8 +50,8 @@ local Eggs1TextField
 local Eggs2
 local Flour 
 local FlourTextField
-local Milk
-local MilkTextField
+local Vanilla
+local VanillaTextField
 local Salt
 local SaltTextField
 local Sugar
@@ -62,7 +62,7 @@ local BakingSodaImage
 local ButterImage
 local EggsImage 
 local FlourImage
-local MilkImage 
+local VanillaImage 
 local SaltImage 
 local SugarImage
 
@@ -70,7 +70,7 @@ local ChocolateChipstimer
 local BakingSodaTimer
 local ButterTimer
 local EggsTimer
-local MilkTimer
+local VanillaTimer
 local SaltTimer
 local SugarTimer
 
@@ -81,7 +81,7 @@ local ANSWERBAKINGSODA2 = "a"
 local ANSWERBUTTER = "r"
 local ANSWEREGGS = "g"
 local ANSWERFLOUR = "r"
-local ANSWERMILK = "k"
+local ANSWERVanilla = "k"
 local ANSWERSALT = "t"
 local ANSWERSUGAR = "r"
 
@@ -92,7 +92,7 @@ local CAPITOLANSWERBAKINGSODA2 = "A"
 local CAPITOLANSWERBUTTER = "R"
 local CAPITOLANSWEREGGS = "G"
 local CAPITOLANSWERFLOUR = "R"
-local CAPITOLANSWERMILK = "K"
+local CAPITOLANSWERVanilla = "K"
 local CAPITOLANSWERSALT = "T"
 local CAPITOLANSWERSUGAR = "R"
 
@@ -103,7 +103,7 @@ local userAnswerBakingSoda2
 local userAnswerButter
 local userAnswerEggs
 local userAnswerFlour
-local userAnswerMilk
+local userAnswerVanilla
 local userAnswerSalt
 local userAnswerSugar
 
@@ -118,7 +118,7 @@ local BakingSodaComplete = false
 local ButterComplete = false
 local EggsComplete = false
 local FlourComplete = false
-local MilkComplete = false
+local VanillaComplete = false
 local SaltComplete = false
 local SugarComplete = false
 
@@ -144,7 +144,7 @@ local function HideNumTextfields()
     ButterTextField.isVisible = false
     Eggs1TextField.isVisible = false
     FlourTextField.isVisible = false
-    MilkTextField.isVisible = false
+    VanillaTextField.isVisible = false
     SaltTextField.isVisible = false
     SugarTextField.isVisible = false
 
@@ -186,10 +186,10 @@ local function ShowNumTextfields()
         FlourTextField.isVisible = true
     end
 
-    if (MilkComplete == true) then
-        MilkTextField.isVisible = false
+    if (VanillaComplete == true) then
+        VanillaTextField.isVisible = false
     else
-        MilkTextField.isVisible = true
+        VanillaTextField.isVisible = true
     end
 
     if (SaltComplete == true) then
@@ -214,7 +214,7 @@ local function setAnswers(  )
     ANSWERBUTTER = "r"
     ANSWEREGGS = "g"
     ANSWERFLOUR = "r"
-    ANSWERMILK = "k"
+    ANSWERVanilla = "k"
     ANSWERSALT = "t"
     ANSWERSUGAR = "r"
 end
@@ -235,7 +235,7 @@ local function youLoseTransition(  )
     Eggs1.isVisible = false
     Eggs2.isVisible = false
     Flour.isVisible = false
-    Milk.isVisible = false
+    Vanilla.isVisible = false
     Salt.isVisible = false
     Sugar.isVisible = false
     ChocolateChips1TextField.isVisible = false
@@ -245,7 +245,7 @@ local function youLoseTransition(  )
     ButterTextField.isVisible = false
     Eggs1TextField.isVisible = false
     FlourTextField.isVisible = false
-    MilkTextField.isVisible = false
+    VanillaTextField.isVisible = false
     SaltTextField.isVisible = false
     SugarTextField.isVisible = false
     pauseButton.isVisible = false
@@ -351,19 +351,19 @@ local function Flour1( )
     end
 end
 
-local function Milk1( )
-    Milk:removeEventListener("touch", Milk1)
-    Milk.x=Milk.x-4.5
-    Milk.y = Milk.y + 2
-    Milk:scale(1.005,1.005)
-    MilkTextField.x = MilkTextField.x - 4
-    MilkTextField.y = MilkTextField.y + 2
-    MilkTextField:scale(1.005,1.005)
-    if(Milk.x <= display.contentCenterX)then
-        timer.cancel(MilkTimer)
-        MilkTextField:resizeFontToFitHeight()
+local function Vanilla1( )
+    Vanilla:removeEventListener("touch", Vanilla1)
+    Vanilla.x=Vanilla.x-4.5
+    Vanilla.y = Vanilla.y + 2
+    Vanilla:scale(1.005,1.005)
+    VanillaTextField.x = VanillaTextField.x - 4
+    VanillaTextField.y = VanillaTextField.y + 2
+    VanillaTextField:scale(1.005,1.005)
+    if(Vanilla.x <= display.contentCenterX)then
+        timer.cancel(VanillaTimer)
+        VanillaTextField:resizeFontToFitHeight()
     else
-        MilkTimer = timer.performWithDelay(-0.23, Milk1)
+        VanillaTimer = timer.performWithDelay(-0.23, Vanilla1)
     end
 end
 local function Salt1( )
@@ -457,7 +457,7 @@ local function chooseRandomIng(  )
             Flour1()
         end
        elseif (randomIng == 6) then
-        if (MilkComplete == true) then
+        if (VanillaComplete == true) then
             while (randomIng == 6) do
                 randomIng = math.random( 1,8 )
             end
@@ -465,7 +465,7 @@ local function chooseRandomIng(  )
                 chooseRandomIng()
             end
         else
-            Milk1()
+            Vanilla1()
         end
        elseif (randomIng == 7) then
         if (SaltComplete == true) then
@@ -606,21 +606,21 @@ local function DissapearFlour( touch )
     end
 end
 
-local function DissapearMilk( touch )
+local function DissapearVanilla( touch )
     if (touch.phase == "moved") then
         
-        MilkImage.x = touch.x
-        MilkImage.y = touch.y
+        VanillaImage.x = touch.x
+        VanillaImage.y = touch.y
     -- this occurs when they release the mouse
     elseif (touch.phase == "ended") then
           -- if the number is dragged into the userAnswerBox, place it in the center of it
-        if (((Bowl.x - Bowl.width/2) < MilkImage.x ) and
-            ((Bowl.x + Bowl.width/2) > MilkImage.x ) and 
-            ((Bowl.y - Bowl.height/2) < MilkImage.y ) and 
-            ((Bowl.y + Bowl.height/2) > MilkImage.y ) ) then
-            MilkImage.x = Bowl.x 
-            MilkImage.y = Bowl.y
-            MilkImage.isVisible = false
+        if (((Bowl.x - Bowl.width/2) < VanillaImage.x ) and
+            ((Bowl.x + Bowl.width/2) > VanillaImage.x ) and 
+            ((Bowl.y - Bowl.height/2) < VanillaImage.y ) and 
+            ((Bowl.y + Bowl.height/2) > VanillaImage.y ) ) then
+            VanillaImage.x = Bowl.x 
+            VanillaImage.y = Bowl.y
+            VanillaImage.isVisible = false
             totalIngredients = totalIngredients + 1
             checkifwon()
         end
@@ -999,7 +999,7 @@ local function FlourQ( event )
             incorrectTextObject.isVisible = false
             FlourTextField.text = ""
             FlourV = false
-            MilkV = true
+            VanillaV = true
             Flour.isVisible = false
             FlourTextField.isVisible = false
             PlaceFlour()
@@ -1016,45 +1016,45 @@ local function FlourQ( event )
             correctObject.isVisible = false
             FlourTextField.text = ""
             FlourV = false
-            MilkV = true
+            VanillaV = true
 
         end
     end
 end
 
-local function PlaceMilk()
-    MilkComplete = true
-    MilkImage.x = math.random(100, display.contentWidth)
-    MilkImage.y = math.random(160, display.contentHeight*330/512)
-    while (MilkImage.x == pauseButton.x ) do
-        MilkImage.x = math.random(100, display.contentWidth)
+local function PlaceVanilla()
+    VanillaComplete = true
+    VanillaImage.x = math.random(100, display.contentWidth)
+    VanillaImage.y = math.random(160, display.contentHeight*330/512)
+    while (VanillaImage.x == pauseButton.x ) do
+        VanillaImage.x = math.random(100, display.contentWidth)
     end
-    MilkImage.isVisible = true
+    VanillaImage.isVisible = true
 end
 
-local function MilkQ( event )
+local function VanillaQ( event )
     -- ask the question
     if (event.phase=="began")then
 
         --clear text field 
-       MilkTextField.text=""
+       VanillaTextField.text=""
     elseif(event.phase=="submitted")then
-        userAnswerMilk = tostring(event.target.text)
-        if (userAnswerMilk == ANSWERMILK)then
+        userAnswerVanilla = tostring(event.target.text)
+        if (userAnswerVanilla == ANSWERVanilla)then
             native.setKeyboardFocus( nil )
-            MilkTextField:removeEventListener("userInput", MilkQ)
+            VanillaTextField:removeEventListener("userInput", VanillaQ)
             correctObject.isVisible = true
             if (soundOn == true ) then 
                 correctSoundChannel = audio.play(correctSound)
             end
             timer.performWithDelay(2000,incorrectcorrectObjectinvisible)
             incorrectTextObject.isVisible = false
-            MilkTextField.isVisible = false
-            Milk.isVisible = false
+            VanillaTextField.isVisible = false
+            Vanilla.isVisible = false
             SaltV = true
-            MilkV = false
-            PlaceMilk()
-            MilkImage:addEventListener("touch", DissapearMilk)
+            VanillaV = false
+            PlaceVanilla()
+            VanillaImage:addEventListener("touch", DissapearVanilla)
             
         else
             native.setKeyboardFocus( nil )
@@ -1066,8 +1066,8 @@ local function MilkQ( event )
             incorrectTextObject.text = ("That is incorrect.You Lose a life. Try again")
             timer.performWithDelay(2000,incorrectcorrectObjectinvisible)
             correctObject.isVisible = false
-            MilkTextField.text = ""
-            MilkV = false
+            VanillaTextField.text = ""
+            VanillaV = false
             SaltV = true
         end
     end
@@ -1205,7 +1205,7 @@ local function AddEventListeners()
     ButterTextField:addEventListener("userInput", ButterQ)
     Eggs1TextField:addEventListener("userInput", EggsQ)
     FlourTextField:addEventListener("userInput", FlourQ)
-    MilkTextField:addEventListener("userInput", MilkQ)
+    VanillaTextField:addEventListener("userInput", VanillaQ)
     SaltTextField:addEventListener("userInput", SaltQ)
     SugarTextField:addEventListener("userInput", SugarQ)
 end
@@ -1222,19 +1222,26 @@ local function create(  )
     -- insert first ingredient 
 
 
-    ChocolateChips1 = display.newText("Bakin ", 50 ,110, Arial, 35)
+    ChocolateChips1 = display.newText("Choc ", 50 ,110, Arial, 35)
     ChocolateChips1:setTextColor(0,0,0)  
 
     ChocolateChips1TextField = native.newTextField(105 , 110 , 30 , 35)
     ChocolateChips1TextField.inputType = "no-emoji"
     ChocolateChips1TextField:setTextColor(0,0.3,0) 
     
-    ChocolateChips2 = display.newText("Powde", 180 , 110 , Arial , 35)
+    ChocolateChips2 = display.newText("l    te", 160 , 110 , Arial , 35)
     ChocolateChips2:setTextColor(0,0,0)  
 
-    ChocolateChips2TextField = native.newTextField(250, 110 , 30 , 35)
+    ChocolateChips2TextField = native.newTextField(145, 110 , 30 , 35)
     ChocolateChips2TextField:setTextColor(0,0.3,0)
     ChocolateChips2TextField.inputType = "no-emoji"
+
+    ChocolateChips3 = display.newText("Ch   ps", 280 , 110 , Arial , 35)
+    ChocolateChips3:setTextColor(0,0,0)  
+
+    ChocolateChips3TextField = native.newTextField(285, 110 , 30 , 35)
+    ChocolateChips3TextField:setTextColor(0,0.3,0)
+    ChocolateChips3TextField.inputType = "no-emoji"
 
     BakingSoda1 = display.newText("Bakin", 340 , 110 , Arial , 35)
     BakingSoda1:setTextColor(0,0,0)
@@ -1275,12 +1282,12 @@ local function create(  )
     FlourTextField:setTextColor(0,0.3,0)
     FlourTextField.inputType = "no-emoji"
 
-    Milk = display.newText("Mil",900, 110, Arial, 35)
-    Milk:setTextColor(0,0,0)
+    Vanilla = display.newText("Mil",900, 110, Arial, 35)
+    Vanilla:setTextColor(0,0,0)
 
-    MilkTextField = native.newTextField(940, 110, 30, 35)
-    MilkTextField:setTextColor(0,0.3,0)
-    MilkTextField.inputType = "no-emoji"
+    VanillaTextField = native.newTextField(940, 110, 30, 35)
+    VanillaTextField:setTextColor(0,0.3,0)
+    VanillaTextField.inputType = "no-emoji"
 
     Salt = display.newText("Sal", 30, 150, Arial, 35)
     Salt:setTextColor(0,0,0)
@@ -1359,10 +1366,10 @@ local function create(  )
     FlourImage = display.newImageRect("Images/flour.png", 150, 150)
     FlourImage.isVisible = false
 
-    MilkImage = display.newImageRect("Images/milk.png", 150, 150)
-    MilkImage.x = math.random(50, display.contentWidth)
-    MilkImage.y = math.random(160, display.contentHeight*330/512)
-    MilkImage.isVisible = false
+    VanillaImage = display.newImageRect("Images/Vanilla.png", 150, 150)
+    VanillaImage.x = math.random(50, display.contentWidth)
+    VanillaImage.y = math.random(160, display.contentHeight*330/512)
+    VanillaImage.isVisible = false
 
     SaltImage = display.newImageRect("Images/Salt.png", 200, 200)
     SaltImage.x = math.random(50, display.contentWidth)
@@ -1419,8 +1426,8 @@ function scene:create( event )
     sceneGroup:insert( Eggs2 ) 
     sceneGroup:insert( Flour ) 
     sceneGroup:insert( FlourTextField )
-    sceneGroup:insert( Milk )
-    sceneGroup:insert( MilkTextField )  
+    sceneGroup:insert( Vanilla )
+    sceneGroup:insert( VanillaTextField )  
     sceneGroup:insert( Salt )
     sceneGroup:insert( SaltTextField )
     sceneGroup:insert( Sugar )
@@ -1438,7 +1445,7 @@ function scene:create( event )
     sceneGroup:insert(ButterImage)
     sceneGroup:insert(EggsImage)
     sceneGroup:insert(FlourImage)
-    sceneGroup:insert(MilkImage)
+    sceneGroup:insert(VanillaImage)
     sceneGroup:insert(SaltImage)
     sceneGroup:insert(SugarImage)
 
