@@ -1232,7 +1232,7 @@ local function create(  )
     ChocolateChips2 = display.newText("l    te", 160 , 110 , Arial , 35)
     ChocolateChips2:setTextColor(0,0,0)  
 
-    ChocolateChips2TextField = native.newTextField(145, 110 , 30 , 35)
+    ChocolateChips2TextField = native.newTextField(150, 110 , 30 , 35)
     ChocolateChips2TextField:setTextColor(0,0.3,0)
     ChocolateChips2TextField.inputType = "no-emoji"
 
@@ -1243,15 +1243,15 @@ local function create(  )
     ChocolateChips3TextField:setTextColor(0,0.3,0)
     ChocolateChips3TextField.inputType = "no-emoji"
 
-    BakingSoda1 = display.newText("Bakin", 340 , 110 , Arial , 35)
+    BakingSoda1 = display.newText("Bakin", 400 , 110 , Arial , 35)
     BakingSoda1:setTextColor(0,0,0)
       
 
-    BakingSoda1TextField = native.newTextField(400 , 110 , 30 , 35)
+    BakingSoda1TextField = native.newTextField(460 , 110 , 30 , 35)
     BakingSoda1TextField:setTextColor(0,0.3,0)
     BakingSoda1TextField.inputType = "no-emoji"
 
-    BakingSoda2 = display.newText("sod", 450 , 110, Arial, 35)
+    BakingSoda2 = display.newText("sod", 510 , 110, Arial, 35)
     BakingSoda2:setTextColor(0,0,0)  
 
     BakingSoda2TextField = native.newTextField(500 , 110 , 30 , 35)
