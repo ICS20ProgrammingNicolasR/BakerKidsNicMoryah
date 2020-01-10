@@ -1366,7 +1366,7 @@ local function create(  )
     FlourImage = display.newImageRect("Images/flour.png", 150, 150)
     FlourImage.isVisible = false
 
-    VanillaImage = display.newImageRect("Images/Vanilla.png", 150, 150)
+    VanillaImage = display.newImageRect("Images/Milk.png", 150, 150)
     VanillaImage.x = math.random(50, display.contentWidth)
     VanillaImage.y = math.random(160, display.contentHeight*330/512)
     VanillaImage.isVisible = false
